@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="7dp">
+
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:background="@drawable/alertdialog_shape">
+
+        <TextView
+            android:id="@+id/tv_content1"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="拍照"
+            android:textColor="#348FFC"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true" />
+        <View
+            android:id="@+id/view11"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_content1"
+            android:background="#D8D8D8"/>
+        <TextView
+            android:id="@+id/tv_content2"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="从手机相册选择"
+            android:textColor="#348FFC"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_below="@+id/view11"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/bt_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:background="@drawable/alertdialog_shape"
+        android:gravity="center"
+        android:layout_below="@+id/rl"
+        android:layout_marginTop="6dp"
+        android:text="取消"
+        android:textSize="16sp"
+        android:textColor="#3B93FC" />
+</RelativeLayout>
