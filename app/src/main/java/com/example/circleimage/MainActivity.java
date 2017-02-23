@@ -1,5 +1,6 @@
 package com.example.circleimage;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
 
@@ -47,16 +47,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //从手机上取已保存的图片
-//        File tempFiles = getTempFile();
-//        outPutUri = Uri.fromFile(tempFiles);
-//        try {
-//            head = ImageUtil.getBitmapFormUri(MainActivity.this,outPutUri);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        if (head != null) {
-//            circleImageView.setImageBitmap(head);// 用ImageView显示出来
-//        }
+        File tempFiles = getTempFile();
+        outPutUri = Uri.fromFile(tempFiles);
+        try {
+            head = ImageUtil.getBitmapFormUri(MainActivity.this,outPutUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (head != null) {
+            circleImageView.setImageBitmap(head);// 用ImageView显示出来
+        }
 
     }
 
@@ -149,12 +149,15 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 if (data != null) {
 
+//                    Bundle extras = data.getExtras();
+//                    head = extras.getParcelable("data");
+//                    head = getBitmapFromBigImagByUri(outPutUri);//这个方法也是可行，应该是只是尺寸压缩，没有压缩质量，故调用了之前写的ImageUtil（不这么写的话，在裁剪那里的时候返回就甭了）
                     try {
                         head = ImageUtil.getBitmapFormUri(MainActivity.this,outPutUri);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-//                    head = getBitmapFromBigImagByUri(outPutUri);
+
                     if (head != null) {
                         /*** 上传服务器代码*/
                         //Base64的编码
@@ -235,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         // outputX outputY 是裁剪图片宽高
         intent.putExtra("outputX", 150);
         intent.putExtra("outputY", 150);
-        intent.putExtra("return-data", false);// true:不返回uri，false：返回uri
+        intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
         //获取uri并压缩  不然在乐视手机上会bug（剪裁的时候返回崩溃）
         File tempFiles = getTempFile();
         outPutUri = Uri.fromFile(tempFiles);
